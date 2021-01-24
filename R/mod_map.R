@@ -16,7 +16,7 @@ mod_map_ui <- function(id){
     segment(
       style = "padding-top: 45px;",
       uiOutput(ns("label")),
-      leafletOutput(ns("map"))
+      leafletOutput(ns("map"), height = 600)
     )
   )
 }
