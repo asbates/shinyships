@@ -14,7 +14,7 @@ mod_vessel_type_selector_ui <- function(id){
       shiny.semantic::selectInput(
         ns("selected_vessel_type"),
         label = "Select a vessel type",
-        choices = c("Barge", "Tug", "Container")
+        choices = unique(shinyships::ships$ship_type)
       )
     )
   )
@@ -26,6 +26,9 @@ mod_vessel_type_selector_ui <- function(id){
 mod_vessel_type_selector_server <- function(input, output, session){
   ns <- session$ns
 
+  reactive({
+    input$selected_vessel_type
+  })
 }
 
 ## To be copied in the UI

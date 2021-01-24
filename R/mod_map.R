@@ -20,15 +20,25 @@ mod_map_ui <- function(id){
 #' map Server Function
 #'
 #' @noRd
-mod_map_server <- function(input, output, session){
+mod_map_server <- function(input, output, session, vessel_type, vessel){
   ns <- session$ns
+
+  ships <- shinyships::ships
+
+  ships_to_map <- reactive({
+    ships[
+      ships$ship_type == vessel_type() & ships$ship_name == vessel()
+      ,
+    ]
+  })
 
   output$map <- renderLeaflet({
     leaflet() %>%
       addTiles() %>%
       addMarkers(
-        lat = c(32.715, 34.05),
-        lng = c(-117.1625, -118.25)
+        data = ships_to_map(),
+        lng = ~lon,
+        lat = ~lat
       )
   })
 

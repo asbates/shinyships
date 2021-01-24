@@ -23,8 +23,28 @@ mod_vessel_selector_ui <- function(id){
 #' vessel_selector Server Function
 #'
 #' @noRd
-mod_vessel_selector_server <- function(input, output, session){
+mod_vessel_selector_server <- function(input, output, session, vessel_type){
   ns <- session$ns
+
+  ships <- shinyships::ships
+  #vessel_choices <- ships[ships$ship_type == vessel_type(), "ship_name"]
+  vessel_choices <- reactive({
+    unique(
+      ships[ships$ship_type == vessel_type(), "ship_name", drop = TRUE]
+    )
+  })
+
+  observe({
+    updateSelectInput(
+      session,
+      "selected_vessel",
+      choices = vessel_choices()
+    )
+  })
+
+  reactive({
+    input$selected_vessel
+  })
 
 }
 
