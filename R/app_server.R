@@ -19,5 +19,5 @@ app_server <- function( input, output, session ) {
     vessel_type
   )
 
-  callModule(mod_map_server, "map_ui_1", vessel_type, vessel)
+  callModule(mod_map_server, "map_ui", vessel_type, vessel)
 }

@@ -9,6 +9,7 @@
 #' @importFrom shiny NS tagList uiOutput renderUI
 #' @import leaflet
 #' @importFrom scales comma
+#' @importFrom htmlwidgets onRender
 mod_map_ui <- function(id){
   ns <- NS(id)
   tagList(
@@ -43,14 +44,24 @@ mod_map_server <- function(input, output, session, vessel_type, vessel){
     )
   })
 
+  # zoom control blockes the vessel type dropdown
+  # first remove the default zoom control from the top left
+  # then add it to the bottom left with htmlwidgets::onRender()
   output$map <- renderLeaflet({
-    leaflet() %>%
+    leaflet(
+      options = leafletOptions(zoomControl = FALSE)
+    ) %>%
       addTiles() %>%
       addMarkers(
         data = ships_to_map(),
         lng = ~lon,
         lat = ~lat
-      )
+      ) %>%
+      htmlwidgets::onRender("
+        function(el, x) {
+          L.control.zoom({position: 'bottomleft'}).addTo(this);
+        }
+      ")
   })
 
 }
