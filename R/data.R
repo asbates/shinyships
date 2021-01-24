@@ -15,5 +15,4 @@
 #'   \item{max_distance}{longest distanced traveled by the ship}
 #' }
 #'
-#' @source \url{https://www.kaggle.com/NUFORC/ufo-sightings}
 "ships"
