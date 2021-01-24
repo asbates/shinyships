@@ -5,7 +5,7 @@
 #' There are two rows of data for each ship with different coordinates
 #'  indicating the positions for which the ship traveled the longest distance.
 #'
-#' @format A data frame with 2284 rows and 5 columns.
+#' @format A data frame with 2304 rows and 5 columns.
 #'
 #' \describe{
 #'   \item{lat}{latitude of ship's location}

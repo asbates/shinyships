@@ -5,7 +5,7 @@
 \alias{ships}
 \title{Longest distance that ships traveled.}
 \format{
-A data frame with 2284 rows and 5 columns.
+A data frame with 2304 rows and 5 columns.
 
 \describe{
   \item{lat}{latitude of ship's location}
