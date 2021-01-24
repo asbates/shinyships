@@ -24,6 +24,7 @@ mod_vessel_selector_ui <- function(id){
 #'
 #' @param vessel_type The vessel type (reactive value from vessel type server).
 #'
+#' @importFrom shiny reactive observe
 #' @noRd
 mod_vessel_selector_server <- function(input, output, session, vessel_type){
   ns <- session$ns
