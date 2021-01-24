@@ -10,7 +10,8 @@ Imports:
     shiny,
     processx,
     shiny.semantic,
-    leaflet
+    leaflet,
+    magrittr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
