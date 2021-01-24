@@ -15,9 +15,6 @@ A data frame with 2284 rows and 5 columns.
   \item{max_distance}{longest distanced traveled by the ship}
 }
 }
-\source{
-\url{https://www.kaggle.com/NUFORC/ufo-sightings}
-}
 \usage{
 ships
 }

@@ -1,6 +1,6 @@
 #' map UI Function
 #'
-#' @description A shiny Module.
+#' @description A shiny Module to generate the map UI.
 #'
 #' @param id,input,output,session Internal parameters for {shiny}.
 #'
@@ -22,6 +22,11 @@ mod_map_ui <- function(id){
 }
 
 #' map Server Function
+#'
+#' A shiny Module to generate the map server.
+#'
+#' @param vessel_type The vessel type (reactive value from vessel type server).
+#' @param vessel The vessel name (reactive value from vessel server).
 #'
 #' @noRd
 mod_map_server <- function(input, output, session, vessel_type, vessel){

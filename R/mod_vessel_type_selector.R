@@ -1,6 +1,6 @@
 #' vessel_type_selector UI Function
 #'
-#' @description A shiny Module.
+#' @description A shiny Module to generate the vessel type selector UI.
 #'
 #' @param id,input,output,session Internal parameters for {shiny}.
 #'
@@ -21,6 +21,8 @@ mod_vessel_type_selector_ui <- function(id){
 }
 
 #' vessel_type_selector Server Function
+#'
+#' A shiny Module to generate the vessel type selector server.
 #'
 #' @noRd
 mod_vessel_type_selector_server <- function(input, output, session){
