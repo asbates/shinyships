@@ -17,7 +17,7 @@ app_ui <- function(request) {
         mod_vessel_type_selector_ui("vessel_type_selector_ui"),
         mod_vessel_selector_ui("vessel_selector_ui")
       ),
-      mod_map_ui("map_ui_1")
+      mod_map_ui("map_ui")
   )
 }
 
