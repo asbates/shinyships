@@ -40,7 +40,8 @@ mod_map_server <- function(input, output, session, vessel_type, vessel){
     distance <- scales::comma(ships_to_map()$max_distance[1], accuracy = 0.1)
     label(
       paste("Longest Distance Sailed:", distance, "m"),
-      class = "top attached label"
+      class = "top attached label large label",
+      is_link = FALSE
     )
   })
 

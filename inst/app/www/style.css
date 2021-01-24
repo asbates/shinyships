@@ -1,0 +1,36 @@
+/*
+makes a few adjustments to the UI for a different color scheme and
+ consistency across elements
+*/
+
+/* map container */
+.ui.segment {
+  background: #ebebeb;
+}
+
+/* dropdown containers */
+.ui.horizontal.segments > .segment {
+  background-color: #ebebeb;
+}
+
+/* dropdowns label text */
+.ui.form .field > label {
+  color: #2b3e50;
+}
+
+/* dropdowns when collapsed */
+.ui.selection.dropdown {
+  background: #ebebeb;
+  color: #2b3e50; /* text color */
+}
+
+/* dropdowns when expanded */
+.ui.dropdown .menu {
+  background: #ebebeb;
+}
+
+/* dropdowns when expanded text color */
+.ui.dropdown .menu > .item {
+  color: #2b3e50;
+}
+

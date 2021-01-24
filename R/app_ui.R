@@ -7,11 +7,12 @@
 app_ui <- function(request) {
   semanticPage(
     title = "Shiny Ships",
+    theme = "superhero",
+    margin = "20px",
     # Leave this function for adding external resources
     # note: no external resources currently
     # will need to uncomment if added
-    # golem_add_external_resources(),
-    # List the first level UI elements here
+    golem_add_external_resources(),
       segment(
         class = "horizontal segments",
         mod_vessel_type_selector_ui("vessel_type_selector_ui"),
@@ -38,7 +39,7 @@ golem_add_external_resources <- function(){
     #favicon(),
     bundle_resources(
       path = app_sys('app/www'),
-      app_title = 'shinyships'
+      app_title = 'Shiny Ships'
     )
     # Add here other external resources
     # for example, you can add shinyalert::useShinyalert()
