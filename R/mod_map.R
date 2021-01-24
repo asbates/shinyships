@@ -52,10 +52,11 @@ mod_map_server <- function(input, output, session, vessel_type, vessel){
       options = leafletOptions(zoomControl = FALSE)
     ) %>%
       addTiles() %>%
-      addMarkers(
+      addAwesomeMarkers(
         data = ships_to_map(),
         lng = ~lon,
-        lat = ~lat
+        lat = ~lat,
+        icon = awesomeIcons("ship", "fa")
       ) %>%
       htmlwidgets::onRender("
         function(el, x) {
