@@ -12,6 +12,7 @@ library(geodist)
 
 temp_dir <- tempdir()
 
+# will ask to save/retrieve auth token
 file <- drive_get("ships_04112020.zip")
 
 downloaded_file <- drive_download(
@@ -32,13 +33,14 @@ ships <- ships_raw %>%
     lon = LON,
     date_time = DATETIME,
     ship_type,
-    ship_name = SHIPNAME
+    ship_name = SHIPNAME,
+    ship_id = SHIP_ID
   )
 
 # keep only ships with at least 2 observations
 # otherwise, we can't compute a distance
 ships <- ships %>%
-  add_count(ship_name) %>%
+  add_count(ship_id) %>%
   filter(n >= 2) %>%
   select(-n)
 
@@ -73,13 +75,15 @@ ships <- ships %>%
 
 
 # ensure observations are in the correct order before computing distances
+# note there are some ships with the same name but different id and type
+# so we use ship id as the unique identifier
 ships <- ships %>%
-  arrange(ship_name, date_time) %>%
+  arrange(ship_id, date_time) %>%
   select(-date_time)
 
 # ---- add distances ----
 ships <- ships %>%
-  group_by(ship_name) %>%
+  group_by(ship_id) %>%
   mutate(
     distance = geodist_vec(lon,
                            lat,
@@ -92,7 +96,7 @@ ships <- ships %>%
 
 
 ships <- ships %>%
-  group_by(ship_name) %>%
+  group_by(ship_id) %>%
   mutate(
     max_distance = max(distance, na.rm = TRUE)
   ) %>%
@@ -101,11 +105,20 @@ ships <- ships %>%
 # let's assume we only want to see ships who traveled some positive distance
 # we keep the records where the ship traveled the longest distance and the
 #  previous record
+# we use which(x == max(x)) because which.max(x) only returns the first
+#  instance of the max
+# we select the last (most recent) max by using tail(x, 1)
+# ex: x <- c(1, 2, 3, 3); which.max(x); which(x == max(x));
 ships <- ships %>%
-  group_by(ship_name) %>%
+  group_by(ship_id) %>%
   filter(max_distance > 0) %>%
+  mutate(
+    one_before_max_idx =
+      tail(which(distance == max(distance, na.rm = TRUE)), 1) - 1,
+    max_idx = tail(which(distance == max(distance, na.rm = TRUE)), 1)
+  ) %>%
   slice(
-    ( which.max(distance) - 1 ):which.max(distance)
+    one_before_max_idx[1]:max_idx[1]
   ) %>%
   ungroup()
 
